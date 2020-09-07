@@ -1,0 +1,61 @@
+<h1>Ajouter votre candidature</h1> 
+     
+<form [formGroup]="employeeService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list  cols="1" rowHeight="700px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="id" name="id" >
+
+        <mat-form-field >
+          <input matInput formControlName="Nom" matInput placeholder="Nom*">
+          <mat-error *ngIf="employeeService.form.controls['Nom'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Nom'].errors?.maxlength">Votre email ne peut pas dépasser 30 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Prenom" matInput placeholder="Prenom*">
+          <mat-error *ngIf="employeeService.form.controls['Prenom'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Prenom'].errors?.maxlength">Votre email ne peut pas dépasser 30 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="date" formControlName="Date_de_naissance" placeholder="Date de naissance">
+          
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Email" matInput placeholder="Email*">
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.email">Adresse e-mail invalide!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.maxlength">Votre email ne peut pas dépasser 200 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Num_tel" matInput placeholder="Num tel*">
+          <mat-error *ngIf="employeeService.form.controls['Num_tel'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Num_tel'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Disponibilite" matInput placeholder="Disponibilite">
+          <mat-error>Disponibilité entre 0.0 et 6.0 (mois)!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Experience" matInput placeholder="Experience">
+          <mat-error>Entrer un nombre positive!</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput formControlName="Cv"  placeholder="Cv*">
+          <mat-error>Ce champ est obligatoire!</mat-error>
+        </mat-form-field>          
+        
+        <mat-form-field>
+          <input matInput formControlName="Message" matInput placeholder="Message">
+        </mat-form-field>
+     
+       
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeService.form.invalid" (click)="onSubmit()"
+          >Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+      </mat-grid-tile>
+  </mat-grid-list>
+</form> 

@@ -1,0 +1,126 @@
+<!--
+<h3>Create a new research paper</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="Nom">Nom</label>
+      <input type="text" class="form-control" id="Nom" successMessage=""
+      errorMessage="Enter votre nom" [(ngModel)]="employee.Nom" name="Nom">
+    </div>
+
+    <div class="form-group">
+      <label for="Prenom">Description</label>
+      <input type="text" class="form-control" id="Prenom" required [(ngModel)]="employee.Prenom" name="description">
+    </div>
+
+    <div class="form-group">
+      <label for="Email">Email</label>
+      <input type="Email" class="form-control" id="Email" required [(ngModel)]="employee.Email" name="Email">
+    </div>
+
+    <div class="form-group">
+        <label for="Date_de_naissance">Date_de_naissance</label>
+        <input type="date" class="form-control" id="Date_de_naissance" required [(ngModel)]="employee.Date_de_naissance" name="Date_de_naissance">
+    </div>
+
+    <div class="form-group">
+        <label for="Num_tel">Num_tel</label>
+        <input type="number" class="form-control" id="Num_tel" required [(ngModel)]="employee.Num_tel" 
+        name="Num_tel">
+    </div>
+
+    
+
+    <div class="form-group">
+        <label for="Disponibilite">Disponibilite</label>
+        <input type="text" class="form-control" id="Disponibilite" required [(ngModel)]="employee.Disponibilite" 
+        name="Disponibilite">
+    </div>
+    <div class="form-group">
+      <label for="Experience">Experience</label>
+      <input type="text" class="form-control" id="Experience" required [(ngModel)]="employee.Experience" name="Experience">
+    </div>
+
+    <div class="form-group">
+      <label for="Message">Email</label>
+      <input type="text" class="form-control" id="Message" required [(ngModel)]="employee.Message" name="Message">
+    </div>
+    <div class="form-group">
+      <label for="Cv">Cv</label>
+      <input type="file" class="form-control" id="Cv" required [(ngModel)]="employee.Cv" name="Cv">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+
+</div>
+-->
+
+  <mat-toolbar>
+    <span>{{employeeService.form.controls['id'].value?"Modify Employee":"New Employee"}}</span> 
+     <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+
+<form [formGroup]="employeeService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list  cols="1" rowHeight="700px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="id" name="id" >
+
+        <mat-form-field >
+          <input matInput formControlName="Nom" matInput placeholder="Nom*">
+          <mat-error *ngIf="employeeService.form.controls['Nom'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Nom'].errors?.maxlength">Votre email ne peut pas dépasser 30 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Prenom" matInput placeholder="Prenom*">
+          <mat-error *ngIf="employeeService.form.controls['Prenom'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Prenom'].errors?.maxlength">Votre email ne peut pas dépasser 30 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="date" formControlName="Date_de_naissance" placeholder="Date de naissance">
+          
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Email" matInput placeholder="Email*">
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.email">Adresse e-mail invalide!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Email'].errors?.maxlength">Votre email ne peut pas dépasser 200 caractères!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Num_tel" matInput placeholder="Num tel*">
+          <mat-error *ngIf="employeeService.form.controls['Num_tel'].errors?.required">Ce champ est obligatoire!</mat-error>
+          <mat-error *ngIf="employeeService.form.controls['Num_tel'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Disponibilite" matInput placeholder="Disponibilite">
+          <mat-error>Disponibilité entre 0.0 et 6.0 (mois)!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Experience" matInput placeholder="Experience">
+          <mat-error>Entrer un nombre positive!</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput formControlName="Cv"  placeholder="Cv*">
+          <mat-error>Ce champ est obligatoire!</mat-error>
+        </mat-form-field>
+          
+        
+        <mat-form-field>
+          <input matInput formControlName="Message" matInput placeholder="Message">
+        </mat-form-field>
+     
+       
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeService.form.invalid" (click)="onSubmit()"
+          >Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+      </mat-grid-tile>
+  </mat-grid-list>
+</form> 

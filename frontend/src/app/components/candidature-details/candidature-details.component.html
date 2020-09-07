@@ -1,0 +1,57 @@
+
+<mat-toolbar>
+    <span>Profil du candidat</span> 
+     <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="employeeService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="1" rowHeight="700px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="id" name="id" >  
+        <mat-form-field>
+          <input matInput formControlName="Nom" matInput placeholder="Nom" value="Nom">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Prenom" matInput placeholder="Prenom*">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="date" formControlName="Date_de_naissance" placeholder="Date de naissance">
+          
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Email" matInput placeholder="Email*">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Num_tel" matInput placeholder="Num tel*">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Disponibilite" matInput placeholder="Disponibilite">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Experience" matInput placeholder="Experience">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Cv"  placeholder="Cv*">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="Message" matInput placeholder="Message">
+        </mat-form-field>
+       
+         <mat-radio-group formControlName="Etat">
+            <mat-radio-button value="En cours">En cours</mat-radio-button>
+            <mat-radio-button value="Confirmer">Confirmer</mat-radio-button>
+            <mat-radio-button value="Rejeter">Rejeter</mat-radio-button>
+          </mat-radio-group>
+      
+       
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeService.form.invalid" (click)="onSubmit()"
+          >Changer l'état du candidature</button>
+          
+        </div>
+      </div>
+      </mat-grid-tile>
+  </mat-grid-list>
+</form> 
+
