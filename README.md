@@ -1,4 +1,4 @@
-# RecruitementApp_Angular-Django
+# RecruitementApp_Angular-Django-PostgreSQL 
 <h3>Objectif</h3>
 
 Concevoir une application web monopage qui gère les profils des candidats dans une procédure de recrutement.
